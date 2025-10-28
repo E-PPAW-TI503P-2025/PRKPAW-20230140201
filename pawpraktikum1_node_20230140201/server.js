@@ -12,13 +12,13 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(morgan("dev"));
 
-// ✅ Logging tambahan (optional)
+// ✅ Logging tambahan
 app.use((req, res, next) => {
   console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
   next();
 });
 
-// ✅ Rute Root
+// ✅ Route utama
 app.get("/", (req, res) => {
   res.status(200).json({
     message: "Selamat datang di API Server Presensi!",
@@ -26,14 +26,18 @@ app.get("/", (req, res) => {
   });
 });
 
-// ✅ Routing presensi dan laporan
+
+// 🚨 ===➡️ Tambahkan baris ini DI SINI (setelah route utama, sebelum app.listen) === 🚨
+
+// Import routes
 const presensiRoutes = require("./routes/presensi");
 const reportRoutes = require("./routes/report");
 
+// Gunakan routes
 app.use("/api/presensi", presensiRoutes);
 app.use("/api/reports", reportRoutes);
 
-// ✅ 404 Handler
+// ✅ 404 Handler (kalau endpoint tidak ditemukan)
 app.use((req, res) => {
   res.status(404).json({ message: "Endpoint tidak ditemukan" });
 });
