@@ -10,4 +10,8 @@ router.use(addUserData);
 router.post("/check-in", presensiController.CheckIn);
 router.post("/check-out", presensiController.CheckOut);
 
+router.put("/:id", presensiController.updatePresensi);
+router.delete("/:id", presensiController.deletePresensi);
+
+
 module.exports = router;

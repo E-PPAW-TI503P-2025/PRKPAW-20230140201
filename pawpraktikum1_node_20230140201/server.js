@@ -1,20 +1,20 @@
 const express = require("express");
 const cors = require("cors");
-const bodyParser = require("body-parser");
 const morgan = require("morgan");
 
 const app = express();
 const PORT = 3001;
 
-// ✅ Middleware
+// ✅ Middleware dasar (JANGAN pakai bodyParser)
 app.use(cors());
-app.use(bodyParser.json());
-app.use(express.json());
+app.use(express.json()); // parser utama untuk JSON
+app.use(express.urlencoded({ extended: true })); // untuk antisipasi form data
 app.use(morgan("dev"));
 
-// ✅ Logging tambahan
+// ✅ Logging tambahan untuk debug body
 app.use((req, res, next) => {
   console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
+  console.log("Body diterima:", req.body); // Tambahan penting untuk cek apakah body terbaca
   next();
 });
 
@@ -26,18 +26,18 @@ app.get("/", (req, res) => {
   });
 });
 
-
-// 🚨 ===➡️ Tambahkan baris ini DI SINI (setelah route utama, sebelum app.listen) === 🚨
-
-// Import routes
+// ✅ Import routes
 const presensiRoutes = require("./routes/presensi");
 const reportRoutes = require("./routes/report");
 
-// Gunakan routes
+const authRoutes = require('./routes/auth');
+
+// ✅ Gunakan routes
 app.use("/api/presensi", presensiRoutes);
 app.use("/api/reports", reportRoutes);
+app.use('/api/auth', authRoutes);
 
-// ✅ 404 Handler (kalau endpoint tidak ditemukan)
+// ✅ 404 Handler
 app.use((req, res) => {
   res.status(404).json({ message: "Endpoint tidak ditemukan" });
 });
