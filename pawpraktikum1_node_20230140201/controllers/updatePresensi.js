@@ -1,3 +1,5 @@
+const { Presensi } = require("../models");
+
 exports.updatePresensi = async (req, res) => {
   try {
     const presensiId = req.params.id;

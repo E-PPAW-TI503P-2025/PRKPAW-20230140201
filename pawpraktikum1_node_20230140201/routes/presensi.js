@@ -1,17 +1,11 @@
 const express = require("express");
 const router = express.Router();
+
+const { authenticateToken } = require("../middleware/permissionMiddleware");
 const presensiController = require("../controllers/presensiController");
-const { addUserData } = require("../middleware/permissionMiddleware");
 
-// Middleware user dummy
-router.use(addUserData);
-
-// Endpoint presensi
-router.post("/check-in", presensiController.CheckIn);
-router.post("/check-out", presensiController.CheckOut);
-
-router.put("/:id", presensiController.updatePresensi);
-router.delete("/:id", presensiController.deletePresensi);
-
+// WAJIB pasang authenticateToken di sini:
+router.post("/check-in", authenticateToken, presensiController.checkIn);
+router.post("/check-out", authenticateToken, presensiController.checkOut);
 
 module.exports = router;

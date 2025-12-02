@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to bottom right, #013220, #000);
+  color: white;
+}
+
+.center-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 400px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 255, 0, 0.2);
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+}
+
+.card h1,
+.card h2 {
+  text-align: center;
+  color: #00ff99;
+  margin-bottom: 20px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  border-radius: 8px;
+  border: 1px solid #00cc88;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 8px;
+  background: #00cc88;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #00ffaa;
+}
+
+.logout {
+  background: #ff4444 !important;
+  color: white !important;
+}
+
+.logout:hover {
+  background: #ff6666 !important;
+}
+
+.link {
+  color: #00ffaa;
+  cursor: pointer;
+  text-decoration: underline;
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+}

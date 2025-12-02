@@ -2,36 +2,31 @@
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class Presensi extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
-  }
-  Presensi.init({
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    nama: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    checkIn: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    checkOut: {
-      type: DataTypes.DATE,
-      allowNull: true, // Boleh null
-    }
-  }, {
-    sequelize,
-    modelName: 'Presensi',
-  });
-  return Presensi;
+  class Presensi extends Model {
+    static associate(models) {
+      // Relasi dengan User (Many-to-One)
+      Presensi.belongsTo(models.User, { 
+        foreignKey: 'userId',
+        as: 'user' // Alias untuk eager loading
+      });
+    }
+  }
+
+  Presensi.init(
+    {
+      userId: DataTypes.INTEGER,
+      checkIn: DataTypes.DATE,
+      checkOut: DataTypes.DATE,
+      latitude: DataTypes.DECIMAL(10, 8), // Kolom Geolocation
+      longitude: DataTypes.DECIMAL(11, 8), // Kolom Geolocation
+    },
+    {
+      sequelize,
+      modelName: 'Presensi',
+      tableName: 'Presensi',
+      timestamps: true,
+    }
+  );
+
+  return Presensi;
 };
