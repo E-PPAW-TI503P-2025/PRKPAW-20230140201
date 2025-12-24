@@ -21,9 +21,12 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.1",
+    "multer": "^2.0.2",
     "mysql2": "^3.15.3",
+    "react": "^19.2.0",
     "react-router-dom": "^7.9.6",
     "sequelize": "^6.37.7",
-    "sequelize-cli": "^6.6.3"
+    "sequelize-cli": "^6.6.3",
+    "webcam": "^3.2.1"
   }
 }
