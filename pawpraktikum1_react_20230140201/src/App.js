@@ -6,6 +6,7 @@ import RegisterPage from "./components/RegisterPage";
 import DashboardPage from "./components/DashboardPage";
 import PresensiPage from "./components/PresensiPage";
 import ReportPage from "./components/ReportPage";
+import SensorPage from "./components/SensorPage";
 import ProtectedRoute from "./ProtectedRoute";
 import AdminRoute from "./AdminRoute";
 
@@ -44,10 +45,19 @@ function App() {
           }
         />
 
-        <Route path="/" element={<LoginPage />} />
-      </Routes>
-    </BrowserRouter>
-  );
+        <Route
+          path="/monitoring"
+          element={
+            <ProtectedRoute>
+              <SensorPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/" element={<LoginPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;

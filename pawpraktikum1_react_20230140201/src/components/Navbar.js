@@ -36,6 +36,13 @@ function Navbar() {
           Presensi
         </button>
 
+        <button
+          onClick={() => navigate("/monitoring")}
+          className="hover:text-green-300"
+        >
+          Monitoring Suhu
+        </button>
+
         {user?.role === "admin" && (
           <button
             onClick={() => navigate("/reports")}

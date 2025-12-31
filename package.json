@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "start": "concurrently \"cd pawpraktikum1_node_20230140201 && npm start\" \"cd pawpraktikum1_react_20230140201 && npm start\""
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "date-fns": "^4.1.0",
